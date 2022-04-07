@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { useState } from 'react'
 import './App.css';
+import { AppRouter } from './routes/AppRouter'
+import { UserContext } from './UserContext'
+// atravez del user context y el objeto que le pasamos como valor es que ponemos a disposicion los valores que queramos para los distintos componentes aunque sean hermanos, si es algo simple como en este caso se usa context pero si es algo complejo como un carrto es recomendable usar redux
 
 function App() {
+
+  const [user, setUser] = useState({}); 
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{
+      user,
+      setUser
+    }}>
+      <AppRouter/>
+
+    </UserContext.Provider>
   );
 }
 
